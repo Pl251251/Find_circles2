@@ -3,19 +3,25 @@ import math
 import numpy as np
 import imutils
 
+
+
 img = cv2.imread('Oval_shape.jpg',0)
-cv2.imshow('oval', img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+height, width = image.shape[:2]
+center = (width/2, height/2)
+
+rotate_matrix = cv2.getRotationMatrix2D(center, 348, 1)
+rotated = cv2.warpAffine(img, rotate_matrix, (width, height))
 
 
+"""
 rotated = imutils.rotate_bound(img, 12)
 cv2.imshow('oval', rotated)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+"""
 
-y = int((rotated.shape[1]) * (8.5/(math.sqrt(230))))
-resized_ = cv2.resize(img,(y, rotated.shape[0]))
+x_1 = int((rotated.shape[1]) * (8.5/(math.sqrt(230))))
+resized_ = cv2.resize(img,(x_1, rotated.shape[0]))
 
 cv2.imshow('oval', resized_)
 cv2.waitKey(0)
@@ -39,8 +45,11 @@ img =resized_
 x_2 = int((img.shape[1]) * ((math.sqrt(230)/8.5)))
 resized2_ = cv2.resize(img,(x_2, img.shape[0]))
 
+rotate_matrix = cv2.getRotationMatrix2D(center, 12, 1)
+rotated = cv2.warpAffine(resized2_, rotate_matrix, (width, height))
 
 
-cv2.imshow('oval', resized2_)
+cv2.imshow('oval', rotated)
 cv2.waitKey(0)
-cv2.destroyAllWindows()
+cv2.destroyAllWindows()"
+
