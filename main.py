@@ -1,20 +1,28 @@
 import cv2
-from PIL import Image
 import math
 import numpy as np
-#pillow
-im = Image.open('test_l3.jpg')
-im_rotate = im.rotate(348)
-im = im_rotate.save("hello.jpg")
-#opencv
-img = cv2.imread('hello.jpg',0)
+import imutils
 
-
+img = cv2.imread('Oval_shape.jpg',0)
 cv2.imshow('oval', img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-y = int((img.shape[1]) * (8.5/(math.sqrt(230))))
-resized_ = cv2.resize(img,(y, img.shape[0]))
+
+
+rotated = imutils.rotate_bound(img, 12)
+cv2.imshow('oval', rotated)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+y = int((rotated.shape[1]) * (8.5/(math.sqrt(230))))
+resized_ = cv2.resize(img,(y, rotated.shape[0]))
+
+cv2.imshow('oval', resized_)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+
 
 #finding a circle
 blur= cv2.medianBlur(resized_,7)
@@ -33,16 +41,6 @@ resized2_ = cv2.resize(img,(x_2, img.shape[0]))
 
 
 
-cv2.imwrite("hello4.jpg", resized2_)
-#pillow
-im = Image.open('hello4.jpg')
-im_rotate = im.rotate(12)
-im = im_rotate.save("hello.jpg")
-#opencv
-img = cv2.imread('hello.jpg',0)
-
-
-
-cv2.imshow('oval', img)
+cv2.imshow('oval', resized2_)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
