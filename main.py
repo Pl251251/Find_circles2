@@ -51,5 +51,5 @@ rotated = cv2.warpAffine(resized2_, rotate_matrix, (width, height))
 
 cv2.imshow('oval', rotated)
 cv2.waitKey(0)
-cv2.destroyAllWindows()"
+cv2.destroyAllWindows()
 
